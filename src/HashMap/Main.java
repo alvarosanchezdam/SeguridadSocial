@@ -21,7 +21,7 @@ public class Main {
         System.out.println("Altas a la seguridad social: " + seguridadSocial.obtenerTodas());
 
 
-        System.out.println("Baja a la seguridad   social: " + anna);
+        System.out.println("Baja a la seguridad    social: " + anna);
         seguridadSocial.bajaPersona(anna.getDni());
 
 
