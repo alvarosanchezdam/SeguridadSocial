@@ -55,7 +55,7 @@ public class SeguridadSocial {
     }
 
     public List<Persona> obtenerPersonasMayoresQue(int edad){
-
+return
     }
 
     public List<Persona> obtenerTodas(){
