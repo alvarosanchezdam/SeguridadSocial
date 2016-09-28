@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-public class SeguridadSocial {
+    public class SeguridadSocial {
     Map<String,Persona> personaMapDni;
     Map<String,Persona> personaMapNumSS;
     public SeguridadSocial() {
@@ -27,12 +28,10 @@ public class SeguridadSocial {
     }
 
     public void bajaPersona(String dni) {
-        for(Persona p : personaMapDni.values()){
-            if(p.getDni().equals(dni)){
-                personaMapNumSS.remove(p.getNumSeguridadSocial());
-            }
-        }
-        personaMapDni.remove(dni);
+
+        Persona p =personaMapDni.get(dni);
+        personaMapDni.remove(p.getDni());
+        personaMapNumSS.remove(p.getNumSeguridadSocial());
 
     }
 
@@ -41,25 +40,36 @@ public class SeguridadSocial {
     }
 
     public Persona obtenerPersonaPorNumSS(String numSS) {
+
         return personaMapDni.get(numSS);
     }
 
-    public Map<String, Persona> obtenerPersonasRangoSalarial(double min, double max){
-        Map<String, Persona> personasSalarioDni=new HashMap<>();
+    public List<Persona> obtenerPersonasRangoSalarial(double min, double max){
+        List<Persona> personasSalario=new ArrayList<>();
+        //personaMapDni.values().stream().filter(p -> p.getSalario()>=min&&p.getSalario()<=max).collect(Collectors.toList());
+
         for(Persona p : personaMapDni.values()){
             if(p.getSalario()>=min&&p.getSalario()<=max){
-                personasSalarioDni.put(p.getDni(), p);
+                personasSalario.add(p);
             }
         }
-        return personasSalarioDni;
+        return personasSalario;
     }
 
     public List<Persona> obtenerPersonasMayoresQue(int edad){
-return
+        List<Persona> personasEdad=new ArrayList<>();
+        personasEdad=personaMapDni.values().stream().filter(p -> p.getEdad()>=edad).collect(Collectors.toList());
+
+        //for(Persona p : personaMapDni.values()){
+            //if(p.getSalario()>=min&&p.getSalario()<=max){
+               // personasSalario.add(p);
+            //}
+        //}
+        return personasEdad;
     }
 
     public List<Persona> obtenerTodas(){
-
+        return personaMapDni.values().stream().collect(Collectors.toList());
     }
 
     @Override

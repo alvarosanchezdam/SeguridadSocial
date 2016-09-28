@@ -29,6 +29,9 @@ public class SeguridadSocial {
     }
 
     public void bajaPersona(String dni) {
+
+        personasList.removeIf(p -> dni.equals(p.getDni()));
+
         for(int i=0; i< personasList.size();i++){
             if(dni==personasList.get(i).getDni()){
                 personasList.remove(i);
@@ -38,7 +41,7 @@ public class SeguridadSocial {
 
     public Persona obtenerPersonaPorDNI(String dni) {
         for(int i=0; i< personasList.size();i++){
-            if(dni==personasList.get(i).getDni()){
+            if(dni.equals(personasList.get(i).getDni())){
                  return personasList.get(i);
             }
         }
@@ -47,7 +50,7 @@ public class SeguridadSocial {
 
     public Persona obtenerPersonaPorNumSS(String numSS) {
         for(int i=0; i< personasList.size();i++){
-            if(numSS==personasList.get(i).getNumSeguridadSocial()){
+            if(numSS.equals(personasList.get(i).getNumSeguridadSocial())){
                 return personasList.get(i);
             }
         }
